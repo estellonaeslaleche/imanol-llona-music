@@ -24,17 +24,6 @@ const currentURL = Astro.url.searchParams.get('q')
         <HomeIcon />
         Home
       </MenuItem>
-
-      <MenuItem href='/?q=search'>
-        {
-          currentURL !== null ? (
-            <SearchEmpty />
-          ) : (
-            <Search width='24' height='24' />
-          )
-        }
-        Search
-      </MenuItem>
     </ul>
   </div>
 
