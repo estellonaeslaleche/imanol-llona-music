@@ -23,7 +23,7 @@ const { title } = Astro.props
     />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-    <link rel='shortcut icon' href='/favicon.svg' type='image/x-icon' />
+    <link rel='shortcut icon' href='/favicon.jpg' type='image/x-icon' />
     <title>{title}</title>
     <ViewTransitions fallback='none' />
   </head>
@@ -40,7 +40,7 @@ const { title } = Astro.props
           class='h-16 px-6 flex items-center justify-between absolute max-w-[1162px] w-full left-0 top-0 z-20'
         >
           <BackHistory client:load transition:name='back-history' />
-          <div class='flex gap-2'>
+          <!--<div class='flex gap-2'>
             <RoundedBtn
               activeBgColor=''
               bgColor='bg-[rgb(0,0,0,0.54)]'
@@ -60,7 +60,7 @@ const { title } = Astro.props
             >
               <Profile />
             </RoundedBtn>
-          </div>
+          </div> -->
         </header>
         <slot />
       </main>

@@ -12,7 +12,15 @@ import MenuSearch from './MenuSearch.astro'
 import RecentItem from './RecentItem.astro'
 import MenuCard from './MenuCard.astro'
 
-import { playlists } from '@/lib/data'
+let playlists = [];
+
+try {
+  const response = await fetch(`https://imanol-llona-music-files.pages.dev/data.json?cache_bust=${Date.now()}`);
+  const data = await response.json();
+  playlists = data.playlists;
+} catch (error) {
+  console.error('Error fetching playlists:', error);
+}
 
 const currentURL = Astro.url.searchParams.get('q')
 ---
@@ -29,7 +37,7 @@ const currentURL = Astro.url.searchParams.get('q')
 
   <div class='bg-secondary-bg rounded-lg p-2 flex-1'>
     <ul>
-      <SideLibraryItem href='/'>
+      <!--<SideLibraryItem href='/'>
         <LibraryItem slot='library' />
         <RoundedBtn title='Create playlist or folder' slot='more-btn'>
           <More />
@@ -47,6 +55,7 @@ const currentURL = Astro.url.searchParams.get('q')
         </RoundedBtn>
         <RecentItem />
       </MenuSearch>
+       -->
 
       {playlists.map(playlist => <MenuCard playlist={playlist} />)}
     </ul>

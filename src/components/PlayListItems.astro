@@ -1,6 +1,15 @@
 ---
-import { playlists } from '@/lib/data'
+//import { playlists } from '@/lib/data'
 import PlayListItemCard from '@/components/PlayListItemCard.astro'
+let playlists = [];
+
+try {
+  const response = await fetch(`https://imanol-llona-music-files.pages.dev/data.json?cache_bust=${Date.now()}`);
+  const data = await response.json();
+  playlists = data.playlists;
+} catch (error) {
+  console.error('Error fetching playlists:', error);
+}
 ---
 
 <div class='flex flex-wrap mt-6 gap-2'>

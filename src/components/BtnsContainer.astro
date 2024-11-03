@@ -15,8 +15,8 @@ const { id, title } = Astro.props
 <div class='px-6 pt-4 flex items-center justify-between'>
   <div class='flex items-center gap-7'>
     <CardPlayButton client:load id={id} size='large' />
-    <ShowLikeIcon width={32} height={32} client:load />
-    <Options title={title} />
+    <!-- <ShowLikeIcon width={32} height={32} client:load />
+    <Options title={title} />  -->
   </div>
-  <RecentItem title='List' isActiveDisable={true} isHoverDisable={true} />
+   <!--<RecentItem title='List' isActiveDisable={true} isHoverDisable={true} /> -->
 </div>

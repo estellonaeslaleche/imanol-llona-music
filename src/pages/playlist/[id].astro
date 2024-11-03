@@ -1,14 +1,26 @@
 ---
-import { allPlaylists, songs, type Playlist } from '@/lib/data'
+//import { allPlaylists, songs, type Playlist } from '@/lib/data'
 import Layout from '../../layouts/Layout.astro'
 import PlayListHeader from '@/components/PlayListHeader.astro'
 import BtnsContainer from '@/components/BtnsContainer.astro'
 import { MusicsTable } from '@/components/MusicsTable'
 import Footer from '@/components/Footer.astro'
 
+let playlists = [];
+let songs = [];
+
+try {
+  const response = await fetch(`https://imanol-llona-music-files.pages.dev/data.json?cache_bust=${Date.now()}`);
+  const data = await response.json();
+  playlists = data.playlists;
+  songs = data.songs;
+} catch (error) {
+  console.error('Error fetching playlists:', error);
+}
+
 const { id } = Astro.params
 
-const playlist = allPlaylists.find(playlist => playlist.id === id) as Playlist
+const playlist = playlists.find(playlist => playlist.id === id) as Playlist
 const playListSongs = songs.filter(song => song.albumId === playlist.albumId)
 
 const {
@@ -24,7 +36,7 @@ const {
 } = playlist
 ---
 
-<Layout title={`Spotify - ${title}`}>
+<Layout title={`Imanol Llona Music - ${title}`}>
   <div
     id='playlist-container'
     class=`bg-gradient-to-b ${color} relative flex flex-col overflow-x-hidden`
