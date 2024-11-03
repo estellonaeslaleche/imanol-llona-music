@@ -1,5 +1,5 @@
 export async function GET({ params, request }) {
-  const response = await fetch("https://imanol-llona-music-files.pages.dev/data.json");
+  const response = await fetch(`https://imanol-llona-music-files.pages.dev/data.json?cache_bust=${Date.now()}`);
   const data = await response.json();
 
   const { url } = request;
