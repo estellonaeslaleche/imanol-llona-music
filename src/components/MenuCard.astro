@@ -22,7 +22,7 @@ const currentId = Astro.url.pathname.split('/playlist/').pop()
     },
   ]}
 >
-  <picture class='h-12 w-12 flex-none'>
+  <picture class="h-6 w-6 flex-none sm:h-12 sm:w-12">
     <img
       src={cover}
       alt={`Cover of ${title} by ${artist}`}
@@ -35,7 +35,7 @@ const currentId = Astro.url.pathname.split('/playlist/').pop()
       {title}
     </h4>
 
-    <span class='text-sm text-tertiary'>
+    <span class='text-sm text-tertiary hidden sm:block'>
       Album • {artist}
     </span>
   </div>

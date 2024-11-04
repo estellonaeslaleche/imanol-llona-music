@@ -77,7 +77,7 @@ export const songs: Song[] = [
     title: 'Moonlit Walk',
     image: `https://imanol-llona-music-files.pages.dev/2024-11-01/cover.jpg`,
     artists: ['LoFi Dreamer'],
-    album: 'Chill Lo-Fi Music',
+    album: 'Chill Lo-Fi Music222',
     duration: '2:57',
   },
   {

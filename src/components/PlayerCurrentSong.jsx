@@ -18,7 +18,7 @@ export const PlayerCurrentSong = ({ image, title, artists }) => {
         <h3 className='font-semibold text-sm block'>{title}</h3>
         <span className='text-xs opacity-80'>{artists?.join(', ')}</span>
       </div>
-      {title && (
+      { /*title && (
         <ShowLikeIcon
           title={{
             addText: 'Add to',
@@ -29,7 +29,7 @@ export const PlayerCurrentSong = ({ image, title, artists }) => {
           height={16}
           client:load
         />
-      )}
+      ) */}
     </div>
   )
 }

@@ -3,32 +3,15 @@ import { PlayerCurrentSong } from '@/components/PlayerCurrentSong'
 import { PlayerSoundControl } from '@/components/PlayerSoundControl'
 import { PlayerVolumeControl } from '@/components/PlayerVolumeControl'
 import { useCurrentMusic } from '@/hooks/useCurrentMusic'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { usePlayerStore } from '@/store/playerStore'
 
-export function Player() {
-
-  const [isMobile, setIsMobile] = useState(false);
-
+export function PlayerMobile() {
   const { currentMusic, isPlaying, volume, setCurrentMusic } = usePlayerStore(
     state => state
   )
   const audioRef = useRef()
   const { getNextSong } = useCurrentMusic(currentMusic)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    // Llama a la función al cargar la página y al cambiar el tamaño
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    // Limpia el evento de redimensionamiento al desmontar el componente
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
 
   useEffect(() => {
     if (!currentMusic.song) {
@@ -60,28 +43,14 @@ export function Player() {
     }
   }
 
-  return isMobile ? (
-    <div className='flex flex-col'>      
-      <PlayerControlButtonBar />
-      <PlayerSoundControl audio={audioRef} />
-      <audio ref={audioRef} onEnded={onNextSong} />
-    </div>
-  ) : (
+  return (
     <div className='flex flex-row justify-between w-full px-1 py-3 z-50'>
-      <div className='flex-[2]'>
-        <PlayerCurrentSong {...currentMusic.song} />
-      </div>
-
       <div className='grid place-content-center gap-4 flex-[1]'>
         <div className='flex justify-center flex-col items-center'>
           <PlayerControlButtonBar />
           <PlayerSoundControl audio={audioRef} />
           <audio ref={audioRef} onEnded={onNextSong} />
         </div>
-      </div>
-
-      <div className='flex justify-end items-center flex-[2]'>
-        <PlayerVolumeControl />
       </div>
     </div>
   )

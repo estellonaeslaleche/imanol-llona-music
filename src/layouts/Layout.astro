@@ -21,7 +21,7 @@ const { title } = Astro.props
     <meta
       name='description'
     />
-    <meta name='viewport' content='width=device-width' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name='generator' content={Astro.generator} />
     <link rel='shortcut icon' href='/favicon.jpg' type='image/x-icon' />
     <title>{title}</title>
@@ -37,7 +37,7 @@ const { title } = Astro.props
         class='[grid-area:main] relative rounded-lg bg-secondary-bg overflow-y-auto w-full overflow-x-hidden'
       >
         <header
-          class='h-16 px-6 flex items-center justify-between absolute max-w-[1162px] w-full left-0 top-0 z-20'
+          class='h-16 px-6 items-center justify-between absolute max-w-[1162px] w-full left-0 top-0 z-20 hidden sm:flex'
         >
           <BackHistory client:load transition:name='back-history' />
           <!--<div class='flex gap-2'>
@@ -65,7 +65,7 @@ const { title } = Astro.props
         <slot />
       </main>
 
-      <footer class='[grid-area:player] h-[89px] scroll-m-0 overflow-x-hidden'>
+      <footer class='[grid-area:player] h-[89px] scroll-m-0 overflow-x-hidden pt-4 sm:pt-0'>
         <Player client:load transition:name='media-player' transition:persist />
       </footer>
     </div>
@@ -78,6 +78,18 @@ const { title } = Astro.props
         grid-template-columns: 350px 1fr;
         grid-template-rows: 1fr auto;
       }
+
+      @media (max-width: 768px) {
+        #app {
+          grid-template-areas:
+            'aside'
+            'main'
+            'player';
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto auto;
+        }
+      }
+
     </style>
 
     <style is:global>
@@ -112,6 +124,13 @@ const { title } = Astro.props
 
       body {
         min-width: 950px;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          min-width: initial;
+          width: 100%;
+        }
       }
 
       @font-face {
