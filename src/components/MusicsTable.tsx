@@ -35,7 +35,7 @@ export const MusicsTable = ({ songs }: Props) => {
         <tr className='text-zinc-400 text-sm'>
           <th className='px-4 py-2'>#</th>
           <th className='px-4 py-2 hover:text-white'>Title</th>
-          <th className='px-4 py-2 hover:text-white'><span className='hidden sm:block'>Album</span></th>
+          <th className='px-4 py-2 hover:text-white hidden sm:table-cell'>Album</th>
           <th className='px-4 py-2 hover:text-white' title='Duration'>
             <TimeIcon />
           </th>
@@ -98,10 +98,10 @@ export const MusicsTable = ({ songs }: Props) => {
                   >
                     {song.title}
                   </h3>
-                  <span>{song.artists.join(', ')}</span>
+                  <span className="">{song.artists.join(', ')}</span>
                 </div>
               </td>
-              <td className='px-4 py-2 '><span className='hidden sm:block'>{song.album}</span></td>
+              <td className='px-4 py-2 hidden sm:table-cell'>{song.album}</td>
               <td className='px-4 py-2 rounded-tr-lg rounded-br-lg'>
                 {song.duration}
               </td>
@@ -112,3 +112,4 @@ export const MusicsTable = ({ songs }: Props) => {
     </table>
   )
 }
+
