@@ -9,6 +9,7 @@ import { usePlayerStore } from '@/store/playerStore'
 export function Player() {
 
   const [isMobile, setIsMobile] = useState(false);
+  const [currentSong, setCurrentSong] = useState(null);
 
   const { currentMusic, isPlaying, volume, setCurrentMusic } = usePlayerStore(
     state => state
@@ -42,13 +43,23 @@ export function Player() {
   }, [volume])
 
   useEffect(() => {
-    const { song, playlist } = currentMusic
+    const { song, playlist } = currentMusic;
     if (song) {
-      audioRef.current.src = `${song.url}`
-      play()
+      // Descargar el archivo mp3 completamente
+      fetch(song.url)
+        .then(response => response.blob())
+        .then(blob => {
+          // Crear una URL de objeto para el archivo descargado
+          const url = URL.createObjectURL(blob);
+          // Asignar la URL de objeto al audioRef
+          audioRef.current.src = url;
+          setCurrentSong(song);
+          play();
+        })
+        .catch(error => console.error("Error al descargar el archivo mp3:", error));
     }
-  }, [currentMusic])
-
+  }, [currentMusic]);
+  
   const play = () => {
     audioRef.current.play().catch(e => console.log('error playing: ', e))
   }
