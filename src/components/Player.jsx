@@ -9,7 +9,7 @@ import { usePlayerStore } from '@/store/playerStore'
 export function Player() {
 
   const [isMobile, setIsMobile] = useState(false);
-  const [currentSong, setCurrentSong] = useState(null);
+  const downloadedSongs = useRef({}); // Objeto para almacenar varias canciones descargadas
 
   const { currentMusic, isPlaying, volume, setCurrentMusic } = usePlayerStore(
     state => state
@@ -43,20 +43,28 @@ export function Player() {
   }, [volume])
 
   useEffect(() => {
-    const { song, playlist } = currentMusic;
+    const { song } = currentMusic;
     if (song) {
-      // Descargar el archivo mp3 completamente
-      fetch(song.url)
-        .then(response => response.blob())
-        .then(blob => {
-          // Crear una URL de objeto para el archivo descargado
-          const url = URL.createObjectURL(blob);
-          // Asignar la URL de objeto al audioRef
-          audioRef.current.src = url;
-          setCurrentSong(song);
-          play();
-        })
-        .catch(error => console.error("Error al descargar el archivo mp3:", error));
+      const songId = song.id;
+
+      // Verificar si la canción ya está en la caché
+      if (downloadedSongs.current[songId]) {
+        // Si ya está descargada, usar la URL existente
+        audioRef.current.src = downloadedSongs.current[songId];
+        play();
+      } else {
+        // Si no está descargada, descargar y almacenar el archivo
+        fetch(song.url)
+          .then(response => response.blob())
+          .then(blob => {
+            const url = URL.createObjectURL(blob);
+            // Guardar la URL en la caché bajo el ID de la canción
+            downloadedSongs.current[songId] = url;
+            audioRef.current.src = url;
+            play();
+          })
+          .catch(error => console.error("Error al descargar el archivo mp3:", error));
+      }
     }
   }, [currentMusic]);
   
