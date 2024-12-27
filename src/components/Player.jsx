@@ -9,6 +9,7 @@ import { usePlayerStore } from '@/store/playerStore'
 export function Player() {
 
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const downloadedSongs = useRef({}); // Objeto para almacenar varias canciones descargadas
 
   const { currentMusic, isPlaying, volume, setCurrentMusic } = usePlayerStore(
@@ -46,27 +47,25 @@ export function Player() {
     const { song } = currentMusic;
     if (song) {
       const songId = song.id;
-
-      // Verificar si la canción ya está en la caché
       if (downloadedSongs.current[songId]) {
-        // Si ya está descargada, usar la URL existente
         audioRef.current.src = downloadedSongs.current[songId];
         play();
       } else {
-        // Si no está descargada, descargar y almacenar el archivo
+        setIsLoading(true);
         fetch(song.url)
           .then(response => response.blob())
           .then(blob => {
             const url = URL.createObjectURL(blob);
-            // Guardar la URL en la caché bajo el ID de la canción
             downloadedSongs.current[songId] = url;
             audioRef.current.src = url;
             play();
+            setIsLoading(false)
           })
-          .catch(error => console.error("Error al descargar el archivo mp3:", error));
+          .catch(error => console.error("Error al descargar el archivo mp3:", error))
+          .finally();  // Set loading to false after fetching
       }
     }
-  }, [currentMusic]);
+  }, [currentMusic]);  
   
   const play = () => {
     audioRef.current.play().catch(e => console.log('error playing: ', e))
@@ -81,7 +80,7 @@ export function Player() {
 
   return isMobile ? (
     <div className='flex flex-col'>      
-      <PlayerControlButtonBar />
+      <PlayerControlButtonBar isLoading={isLoading} />
       <PlayerSoundControl audio={audioRef} />
       <audio ref={audioRef} onEnded={onNextSong} />
     </div>
@@ -93,7 +92,7 @@ export function Player() {
 
       <div className='grid place-content-center gap-4 flex-[1]'>
         <div className='flex justify-center flex-col items-center'>
-          <PlayerControlButtonBar />
+          <PlayerControlButtonBar isLoading={isLoading} />
           <PlayerSoundControl audio={audioRef} />
           <audio ref={audioRef} onEnded={onNextSong} />
         </div>

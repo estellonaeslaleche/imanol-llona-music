@@ -40,6 +40,36 @@ export const Prev = () => (
   </svg>
 )
 
+export const LoadingIcon = () => (
+  <svg
+    className={`animate-spin  text-gray-900`}
+    role="img"
+    height="16"
+    width="16"
+    aria-hidden="true"
+    viewBox="0 0 50 50"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="25"
+      cy="25"
+      r="20"
+      stroke="currentColor"
+      strokeWidth="4"
+      strokeLinecap="round"
+      opacity="0.2"
+    />
+    <path
+      d="M25 5 A20 20 0 0 1 45 25"
+      stroke="currentColor"
+      strokeWidth="4"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+
 export const Next = () => (
   <svg
     fill='currentColor'

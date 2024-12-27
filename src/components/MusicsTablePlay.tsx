@@ -37,15 +37,16 @@ export const MusicsTablePlay = ({ song, isCurrentSong }: Props) => {
   }
 
   const handleClick = (song: Song) => {
+
     if (isCurrentSongRunning(song)) {
       setIsPlaying(false)
       return
     }
 
-    if (isNewSongOfAnotherPlaylist(currentMusic, song)) {
+    /*if (isNewSongOfAnotherPlaylist(currentMusic, song)) {
       setNewCurrentMusic(song, setIsPlaying, setCurrentMusic)
       return
-    }
+    }*/
 
     // the playlist is the same, set the current song
     setIsPlaying(true)
@@ -54,7 +55,12 @@ export const MusicsTablePlay = ({ song, isCurrentSong }: Props) => {
       playlist: currentMusic.playlist,
       song: song,
     })
+
+    
   }
+
+  
+
 
   const className = 'hover:scale-105'
   return (
