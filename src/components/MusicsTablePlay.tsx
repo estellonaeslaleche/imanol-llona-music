@@ -25,8 +25,7 @@ const setNewCurrentMusic = (
 }
 
 export const MusicsTablePlay = ({ song, isCurrentSong }: Props) => {
-  const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } =
-    usePlayerStore(state => state)
+  const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)
 
   const isCurrentSongRunning = (song: Song) => {
     return (
@@ -42,6 +41,8 @@ export const MusicsTablePlay = ({ song, isCurrentSong }: Props) => {
       setIsPlaying(false)
       return
     }
+
+    setNewCurrentMusic(song, setIsPlaying, setCurrentMusic)
 
     /*if (isNewSongOfAnotherPlaylist(currentMusic, song)) {
       setNewCurrentMusic(song, setIsPlaying, setCurrentMusic)

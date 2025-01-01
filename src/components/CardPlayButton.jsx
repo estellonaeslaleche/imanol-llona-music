@@ -3,11 +3,10 @@ import { getPlayListInfoById } from '@/services/ApiService'
 import { Pause, Play } from '@/icons/PlayerIcons'
 
 export function CardPlayButton({ id, size = 'small' }) {
-  const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } =
-    usePlayerStore(state => state)
+  const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)
 
-  const isPlayingPlaylist = isPlaying && currentMusic?.playlist?.id === id
-  const isThisPlaylistInStore = currentMusic?.playlist?.id === id
+  const isPlayingPlaylist = isPlaying && currentMusic?.playlist?.albumId == id
+  const isThisPlaylistInStore = currentMusic?.playlist?.albumId == id
 
   const handleClick = () => {
     if (isThisPlaylistInStore) {

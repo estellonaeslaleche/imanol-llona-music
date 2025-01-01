@@ -7,8 +7,7 @@ interface PlayerControlButtonBarProps {
 }
 
 export function PlayerControlButtonBar({ isLoading }: PlayerControlButtonBarProps) {
-  const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } =
-    usePlayerStore(state => state)
+  const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)
   const { getNextSong, getPreviousSong } = useCurrentMusic(currentMusic)
 
   const onPlayPause = () => {

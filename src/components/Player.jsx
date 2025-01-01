@@ -45,6 +45,7 @@ export function Player() {
 
   useEffect(() => {
     const { song } = currentMusic;
+    
     if (song) {
       const songId = song.id;
       if (downloadedSongs.current[songId]) {

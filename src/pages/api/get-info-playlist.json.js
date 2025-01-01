@@ -9,7 +9,7 @@ export async function GET({ params, request }) {
     return new Response(JSON.stringify({ error: "Playlist ID is required" }), { status: 400 });
   }
 
-  const playlist = data.playlists.find((playlist) => playlist.id === id);
+  const playlist = data.playlists.find((playlist) => playlist.albumId == id);
   if (!playlist) {
     return new Response(JSON.stringify({ error: "Playlist not found" }), { status: 404 });
   }

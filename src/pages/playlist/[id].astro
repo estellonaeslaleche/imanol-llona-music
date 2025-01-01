@@ -25,6 +25,7 @@ const playListSongs = songs.filter(song => song.albumId === playlist.albumId)
 
 const {
   id: playlistID,
+  albumId,
   title,
   cover,
   artists,
@@ -44,7 +45,7 @@ const {
     <PlayListHeader
       cover={cover}
       title={title}
-      playlistID={playlistID}
+      playlistID={albumId}
       artist={artists[0]}
       releaseYear={releaseYear}
       playListSongs={playListSongs}
@@ -52,7 +53,7 @@ const {
     />
 
     <div class='[background:var(--gradient-playlist)] mt-4'>
-      <BtnsContainer id={playlistID} title={title} />
+      <BtnsContainer id={albumId} title={title} />
 
       <section class='px-6 pt-4'>
         <MusicsTable songs={playListSongs} client:load />
