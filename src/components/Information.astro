@@ -17,8 +17,9 @@ const { playlistID, artist, releaseYear, playListSongs, duration } = Astro.props
     <div transition:name=`playlist ${playlistID} artists`>
       <span class='text-white font-bold'>{artist}</span>
       •
-      <span class='tracking-tighter text-base'>{releaseYear}</span>
-      •
+      { releaseYear &&
+      <span class='tracking-tighter text-base'>{releaseYear} • </span>
+      }
       <span class='tracking-tighter text-base'
         >{playListSongs.length} songs</span
       >
