@@ -9,5 +9,6 @@ const { releaseMonth, releaseDay, releaseYear } = Astro.props
 ---
 
 <footer class='px-6 py-14 text-table-text text-sm'>
-  <span>{releaseMonth}&nbsp;{releaseDay}, {releaseYear}</span>  
+  {releaseMonth && <span>{releaseMonth}&nbsp;{releaseDay}, {releaseYear}</span>  }
+  {!releaseMonth && <span>Year: {releaseYear}</span>  }
 </footer>
