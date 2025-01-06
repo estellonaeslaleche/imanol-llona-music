@@ -10,14 +10,14 @@ interface Props {
   releaseYear: string
   playListSongs: Song[]
   duration: string
+  type: string
 }
 
-const { title, playlistID, artist, releaseYear, playListSongs, duration } =
-  Astro.props
+const { title, playlistID, artist, releaseYear, playListSongs, duration, type } = Astro.props
 ---
 
 <div class='flex flex-col justify-between'>
-  <Title title={title} playlistID={playlistID} />
+  <Title title={title} playlistID={playlistID} type={type} />
   <Information
     playlistID={playlistID}
     artist={artist}

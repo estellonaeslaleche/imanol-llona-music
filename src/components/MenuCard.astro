@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { playlist } = Astro.props
-const { id, cover, title, artists } = playlist
+const { id, cover, title, artists, type } = playlist
 
 const artist = artists[0]
 
@@ -36,7 +36,7 @@ const currentId = Astro.url.pathname.split('/playlist/').pop()
     </h4>
 
     <span class='text-sm text-tertiary hidden sm:block'>
-      Album • {artist}
+      {type} • {artist}
     </span>
   </div>
 </a>
