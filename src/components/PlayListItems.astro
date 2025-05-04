@@ -17,9 +17,9 @@ try {
   {playlists.filter((item) => item.type == 'Album').map(playlist => <PlayListItemCard playlist={playlist} />)}
 </div>
 
-<div class="text-3xl mt-6">Hits</div>
+<div class="text-3xl mt-6">Selected</div>
 <div class='flex flex-wrap  gap-2'>  
-  {playlists.filter((item) => item.type == 'Hit').map(playlist => <PlayListItemCard playlist={playlist} />)}
+  {playlists.filter((item) => item.type == 'Selected').map(playlist => <PlayListItemCard playlist={playlist} />)}
 </div>
 
 <div class="text-3xl mt-6">Estilos musicales</div>
