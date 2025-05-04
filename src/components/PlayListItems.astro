@@ -26,8 +26,3 @@ try {
 <div class='flex flex-wrap gap-2'>  
   {playlists.filter((item) => item.type == 'Estilo musical').map(playlist => <PlayListItemCard playlist={playlist} />)}
 </div>
-
-<div class="text-3xl mt-6">Canciones</div>
-<div class='flex flex-wrap gap-2'>  
-  {playlists.filter((item) => item.type == 'Canciones').map(playlist => <PlayListItemCard playlist={playlist} />)}
-</div>
