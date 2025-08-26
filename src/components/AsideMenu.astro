@@ -60,8 +60,8 @@ const currentURL = Astro.url.searchParams.get('q')
       {playlists.filter((item) => item.type == 'Album').map(playlist => <MenuCard playlist={playlist} />)}      
       <span class="px-2 pt-10 pb-2">Selected</span>
       {playlists.filter((item) => item.type == 'Selected').map(playlist => <MenuCard playlist={playlist} />)}      
-      <span class="px-2 pt-10 pb-2">Estilos musicales</span>
-      {playlists.filter((item) => item.type == 'Estilo musical').map(playlist => <MenuCard playlist={playlist} />)}
+      <span class="px-2 pt-10 pb-2">Music genres</span>
+      {playlists.filter((item) => item.type == 'Music genre').map(playlist => <MenuCard playlist={playlist} />)}
   </div>
 </nav>
 
