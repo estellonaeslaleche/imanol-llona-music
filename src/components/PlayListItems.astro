@@ -12,7 +12,7 @@ try {
 }
 ---
 
-<div class="text-3xl mt-6">Álbumes</div>
+<div class="text-3xl mt-6">Albums</div>
 <div class='flex flex-wrap  gap-2'>  
   {playlists.filter((item) => item.type == 'Album').map(playlist => <PlayListItemCard playlist={playlist} />)}
 </div>
